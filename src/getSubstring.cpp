@@ -16,8 +16,26 @@ original String
 
 #include <stddef.h>
 #include <stdlib.h>
-
 char * get_sub_string(char *str, int i, int j){
+	if (str == NULL||i>j)
+		return NULL;
+	/* 
+	we can do this without using the loop itself in O(1)
 
-    return NULL;
+	the code would be 
+
+	str[j-i+1]='\0';
+	return &str[i];
+
+	but since this modifies the given string .. i used loop to copy 
+	
+	*/
+	char * temp = (char*)malloc(sizeof(char)*(j - i + 2));
+	int index = 0;
+	for (; i <= j; i++)
+	{
+		temp[index++] = str[i];
+	}
+	temp[index] = '\0';
+	return temp;
 }
